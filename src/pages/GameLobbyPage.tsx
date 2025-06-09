@@ -6,13 +6,14 @@ import Button from '../components/Button';
 interface GameLobbyPageProps {
   onCreate: () => void;
   onJoin: (id: string) => void;
+  onSettings?: () => void;
 }
 
-const GameLobbyPage: React.FC<GameLobbyPageProps> = ({ onCreate, onJoin }) => {
+const GameLobbyPage: React.FC<GameLobbyPageProps> = ({ onCreate, onJoin, onSettings }) => {
   const rooms = ['Room 1', 'Room 2'];
   return (
     <div className="min-h-screen flex flex-col bg-[#101a23] text-white">
-      <Header />
+      <Header onSettings={onSettings} />
       <div className="flex-1 p-4">
         <h1 className="text-2xl font-bold mb-4 text-center">Game Lobby</h1>
         <ul className="mb-4">

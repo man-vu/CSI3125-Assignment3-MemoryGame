@@ -6,9 +6,10 @@ import Button from '../components/Button';
 interface AuthPageProps {
   onLogin: (name: string) => void;
   onGuest: () => void;
+  onSettings?: () => void;
 }
 
-const AuthPage: React.FC<AuthPageProps> = ({ onLogin, onGuest }) => {
+const AuthPage: React.FC<AuthPageProps> = ({ onLogin, onGuest, onSettings }) => {
   const [name, setName] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -18,7 +19,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onLogin, onGuest }) => {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#101a23] text-white">
-      <Header />
+      <Header onSettings={onSettings} />
       <div className="flex-1 flex flex-col items-center justify-center p-4 w-full">
         <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-60">
           <input
