@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import PageLayout from '../components/PageLayout';
 import Button from '../components/Button';
+import { games } from '../data/games';
 
 interface JoinGamePageProps {
   onCreate: () => void;
@@ -10,17 +10,9 @@ interface JoinGamePageProps {
 }
 
 const JoinGamePage: React.FC<JoinGamePageProps> = ({ onCreate, onJoin, onSettings }) => {
-  const games = [
-    { id: 'Game-123', players: '2/4', status: 'Waiting' },
-    { id: 'Game-456', players: '1/2', status: 'Waiting' },
-    { id: 'Game-789', players: '3/4', status: 'In Progress' },
-    { id: 'Game-012', players: '2/2', status: 'In Progress' },
-    { id: 'Game-345', players: '1/4', status: 'Waiting' },
-  ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#101a23] text-white">
-      <Header onSettings={onSettings} />
+    <PageLayout onSettings={onSettings}>
       <div className="flex-1 p-4">
         <h1 className="text-3xl font-bold mb-2">Join a Game</h1>
         <p className="text-[#90adcb] mb-4">Browse available games or create your own.</p>
@@ -50,8 +42,7 @@ const JoinGamePage: React.FC<JoinGamePageProps> = ({ onCreate, onJoin, onSetting
           <Button onClick={onCreate}>Create New Game</Button>
         </div>
       </div>
-      <Footer />
-    </div>
+    </PageLayout>
   );
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import PageLayout from '../components/PageLayout';
 import Button from '../components/Button';
 
 interface WelcomePageProps {
@@ -10,8 +9,7 @@ interface WelcomePageProps {
 }
 
 const WelcomePage: React.FC<WelcomePageProps> = ({ onSinglePlayer, onMultiPlayer, onSettings }) => (
-  <div className="min-h-screen flex flex-col bg-[#101a23] text-white">
-    <Header onSettings={onSettings} />
+  <PageLayout onSettings={onSettings}>
     <div className="flex-1 flex flex-col items-center justify-center p-4">
       <h1 className="text-3xl font-bold mb-2">Welcome to Memory Match</h1>
       <p className="mb-4 text-center max-w-lg">
@@ -22,8 +20,7 @@ const WelcomePage: React.FC<WelcomePageProps> = ({ onSinglePlayer, onMultiPlayer
         <Button onClick={onMultiPlayer} variant="secondary">Multiplayer</Button>
       </div>
     </div>
-    <Footer />
-  </div>
+  </PageLayout>
 );
 
 export default WelcomePage;

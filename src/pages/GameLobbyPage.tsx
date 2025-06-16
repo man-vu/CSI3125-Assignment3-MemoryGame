@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import PageLayout from '../components/PageLayout';
 import Button from '../components/Button';
+import { rooms } from '../data/lobby';
 
 interface GameLobbyPageProps {
   onCreate: () => void;
@@ -10,10 +10,8 @@ interface GameLobbyPageProps {
 }
 
 const GameLobbyPage: React.FC<GameLobbyPageProps> = ({ onCreate, onJoin, onSettings }) => {
-  const rooms = ['Room 1', 'Room 2'];
   return (
-    <div className="min-h-screen flex flex-col bg-[#101a23] text-white">
-      <Header onSettings={onSettings} />
+    <PageLayout onSettings={onSettings}>
       <div className="flex-1 p-4">
         <h1 className="text-2xl font-bold mb-4 text-center">Game Lobby</h1>
         <ul className="mb-4">
@@ -28,8 +26,7 @@ const GameLobbyPage: React.FC<GameLobbyPageProps> = ({ onCreate, onJoin, onSetti
           <Button onClick={onCreate}>Create New Game</Button>
         </div>
       </div>
-      <Footer />
-    </div>
+    </PageLayout>
   );
 };
 
