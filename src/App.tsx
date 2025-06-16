@@ -23,6 +23,8 @@ function App() {
   const [page, setPage] = useState<Page>('welcome');
   const [user, setUser] = useState<string>('');
   const [pairs, setPairs] = useState<number>(4);
+  const [soundOn, setSoundOn] = useState<boolean>(true);
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
 
   const goAuth = () => setPage('auth');
   const goMode = () => setPage('mode');
@@ -71,7 +73,17 @@ function App() {
       case 'game':
         return <GameScreenPage pairs={pairs} onFinish={goMode} onSettings={goSettings} />;
       case 'settings':
-        return <SettingsPage onBack={goMode} />;
+        return (
+          <SettingsPage
+            user={user}
+            onUserChange={setUser}
+            soundOn={soundOn}
+            onToggleSound={() => setSoundOn(prev => !prev)}
+            theme={theme}
+            onThemeChange={setTheme}
+            onBack={goMode}
+          />
+        );
       default:
         return <WelcomePage onSinglePlayer={goAuth} onMultiPlayer={goAuth} onSettings={goSettings} />;
     }
