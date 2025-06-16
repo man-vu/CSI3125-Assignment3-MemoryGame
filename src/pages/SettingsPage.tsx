@@ -1,6 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import PageLayout from '../components/PageLayout';
 import Button from '../components/Button';
 
 interface SettingsPageProps {
@@ -22,8 +21,7 @@ const SettingsPage: React.FC<SettingsPageProps> = ({
   onThemeChange,
   onBack,
 }) => (
-  <div className="min-h-screen flex flex-col bg-[#101a23] text-white">
-    <Header />
+  <PageLayout>
     <div className="flex-1 flex flex-col items-center p-4">
       <h1 className="text-2xl font-bold mb-4">Settings</h1>
       <div className="w-full max-w-xs flex flex-col gap-4">
@@ -57,8 +55,7 @@ const SettingsPage: React.FC<SettingsPageProps> = ({
         <Button onClick={onBack}>Back</Button>
       </div>
     </div>
-    <Footer />
-  </div>
+  </PageLayout>
 );
 
 export default SettingsPage;

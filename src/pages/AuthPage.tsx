@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import PageLayout from '../components/PageLayout';
 import Button from '../components/Button';
 
 interface AuthPageProps {
@@ -18,8 +17,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onLogin, onGuest, onSettings }) => 
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#101a23] text-white">
-      <Header onSettings={onSettings} />
+    <PageLayout onSettings={onSettings}>
       <div className="flex-1 flex flex-col items-center justify-center p-4 w-full">
         <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-60">
           <input
@@ -32,8 +30,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ onLogin, onGuest, onSettings }) => 
           <Button variant="secondary" onClick={onGuest}>Continue as Guest</Button>
         </form>
       </div>
-      <Footer />
-    </div>
+    </PageLayout>
   );
 };
 
