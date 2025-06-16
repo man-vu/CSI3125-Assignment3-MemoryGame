@@ -22,9 +22,11 @@ export type Page =
 function App() {
   const [page, setPage] = useState<Page>('welcome');
   const [user, setUser] = useState<string>('');
-  const [pairs, setPairs] = useState<number>(4);
+  const [level, setLevel] = useState<number>(0);
   const [soundOn, setSoundOn] = useState<boolean>(true);
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [boardTheme, setBoardTheme] = useState<'brown' | 'blue'>('brown');
+  const [pieceTheme, setPieceTheme] = useState<'unicode' | 'letters'>('unicode');
 
   const goAuth = () => setPage('auth');
   const goMode = () => setPage('mode');
@@ -32,7 +34,7 @@ function App() {
   const goJoin = () => setPage('join');
   const goLobby = () => setPage('lobby');
   const goSettings = () => setPage('settings');
-  const startGame = (p: number) => { setPairs(p); setPage('game'); };
+  const startGame = (lvl: number) => { setLevel(lvl); setPage('game'); };
 
   const renderPage = () => {
     switch (page) {
@@ -57,21 +59,29 @@ function App() {
       case 'join':
         return (
           <JoinGamePage
-            onCreate={() => startGame(4)}
-            onJoin={() => startGame(4)}
+            onCreate={() => startGame(0)}
+            onJoin={() => startGame(0)}
             onSettings={goSettings}
           />
         );
       case 'lobby':
         return (
           <GameLobbyPage
-            onCreate={() => startGame(4)}
-            onJoin={() => startGame(4)}
+            onCreate={() => startGame(0)}
+            onJoin={() => startGame(0)}
             onSettings={goSettings}
           />
         );
       case 'game':
-        return <GameScreenPage pairs={pairs} onFinish={goMode} onSettings={goSettings} />;
+        return (
+          <GameScreenPage
+            level={level}
+            boardTheme={boardTheme}
+            pieceTheme={pieceTheme}
+            onFinish={goMode}
+            onSettings={goSettings}
+          />
+        );
       case 'settings':
         return (
           <SettingsPage
@@ -81,6 +91,10 @@ function App() {
             onToggleSound={() => setSoundOn(prev => !prev)}
             theme={theme}
             onThemeChange={setTheme}
+            boardTheme={boardTheme}
+            onBoardThemeChange={setBoardTheme}
+            pieceTheme={pieceTheme}
+            onPieceThemeChange={setPieceTheme}
             onBack={goMode}
           />
         );

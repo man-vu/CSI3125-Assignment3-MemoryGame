@@ -10,6 +10,10 @@ interface SettingsPageProps {
   onToggleSound: () => void;
   theme: 'dark' | 'light';
   onThemeChange: (theme: 'dark' | 'light') => void;
+  boardTheme: 'brown' | 'blue';
+  onBoardThemeChange: (t: 'brown' | 'blue') => void;
+  pieceTheme: 'unicode' | 'letters';
+  onPieceThemeChange: (t: 'unicode' | 'letters') => void;
   onBack: () => void;
 }
 
@@ -20,6 +24,10 @@ const SettingsPage: React.FC<SettingsPageProps> = ({
   onToggleSound,
   theme,
   onThemeChange,
+  boardTheme,
+  onBoardThemeChange,
+  pieceTheme,
+  onPieceThemeChange,
   onBack,
 }) => (
   <div className="min-h-screen flex flex-col bg-[#101a23] text-white">
@@ -50,6 +58,32 @@ const SettingsPage: React.FC<SettingsPageProps> = ({
           >
             <option value="dark">Dark</option>
             <option value="light">Light</option>
+          </select>
+        </label>
+        <label className="flex flex-col text-left">
+          <span className="mb-1 font-bold">Board Theme</span>
+          <select
+            className="rounded-xl px-3 py-2 text-black"
+            value={boardTheme}
+            onChange={(e) =>
+              onBoardThemeChange(e.target.value as 'brown' | 'blue')
+            }
+          >
+            <option value="brown">Brown</option>
+            <option value="blue">Blue</option>
+          </select>
+        </label>
+        <label className="flex flex-col text-left">
+          <span className="mb-1 font-bold">Piece Theme</span>
+          <select
+            className="rounded-xl px-3 py-2 text-black"
+            value={pieceTheme}
+            onChange={(e) =>
+              onPieceThemeChange(e.target.value as 'unicode' | 'letters')
+            }
+          >
+            <option value="unicode">Unicode</option>
+            <option value="letters">Letters</option>
           </select>
         </label>
       </div>
